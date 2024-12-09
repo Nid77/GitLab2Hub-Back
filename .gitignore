@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+
+# Coverage directory used by testing tools
+coverage/
+
+# Build output
+build/
+
+# Optional npm package lock files
+package-lock.json
+yarn.lock
