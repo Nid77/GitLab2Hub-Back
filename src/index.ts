@@ -19,7 +19,14 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Hello World!");
 });
 
-app.use("/api", routes);
+try {
+    app.use("/api", routes);
+} catch (error) {
+    app.use((req: Request, res: Response) => {
+        res.status(404).send("Not Found");
+    });
+    console.log(error);
+}
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

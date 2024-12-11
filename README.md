@@ -3,7 +3,7 @@
 ## Configuration
 Make sure to create a `.env` file with the following content:
 ```bash
-AUTH_TOKEN=your_github_token
+AUTH_TOKEN=your_auth_token
 ```
 
 ## Launch

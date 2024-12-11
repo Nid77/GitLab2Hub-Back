@@ -12,7 +12,14 @@
         "paths": {
             "@/*": ["src/*"],
             "@/controllers/*": ["src/controllers/*"],
-            "@/routes/*": ["src/routes/*"]
+            "@/routes/*": ["src/routes/*"],
+            "@/services/*": ["src/services/*"],
+            "@/models/*": ["src/models/*"],
+            "@/middlewares/*": ["src/middlewares/*"],
+            "@/utils/*": ["src/utils/*"],
+            "@/constants/*": ["src/constants/*"]
         }
-    }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "build"]
 }
