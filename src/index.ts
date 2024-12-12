@@ -15,18 +15,12 @@ app.use(express.json());
 // Middleware for authorization
 app.use(authorizationMiddleware);
 
-app.get("/", (req: Request, res: Response) => {
-    res.send("Hello World!");
-});
+// Routes
+app.use("/api", routes);
 
-try {
-    app.use("/api", routes);
-} catch (error) {
-    app.use((req: Request, res: Response) => {
-        res.status(404).send("Not Found");
-    });
-    console.log(error);
-}
+routes.all("*", (req, res) => {
+    res.status(404).send("Route not found.");
+});
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

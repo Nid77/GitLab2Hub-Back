@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -r ts-node/register src/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc --build tsconfig.json",
     "build:ts": "nodemon  --watch . --ext js,json,hbs,html,ts --exec \"npx tsx ./src/index.ts\"",
     "start": "node build/index.js"
