@@ -6,6 +6,6 @@ const router = express.Router();
 
 const gitHubController = new GitHubController();
 
-router.post("/migrate",validMigrationBodyMiddleware, gitHubController.migrate);
+router.post("/migrate", validMigrationBodyMiddleware, gitHubController.migrate);
 
 export default router;

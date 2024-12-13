@@ -1,8 +1,7 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
-export class Controller{
+export class Controller {
     async get(req: Request, res: Response) {
-        res.status(200).json({ message: "Hello World !" })
+        res.status(200).json({ message: "Hello World !" });
     }
-
 }
