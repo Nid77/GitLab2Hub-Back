@@ -1,15 +1,25 @@
 import { Request, Response } from "express";
 import { GitHubService } from "../services/github/service";
+import { migrationModel } from "../models/github/MigrationModel";
 
 export class GitHubController {
     async migrate(req: Request, res: Response) {
-        const { sourceRepoUrl, destinationRepoUrl } = req.body;
+        const model = migrationModel.parse(req.body);
+        const { githubtoken } = req.headers;
         const gitHubService = new GitHubService();
         try {
-            await gitHubService.migrateProject(sourceRepoUrl, destinationRepoUrl);
-            res.status(200).json("Migrate to GitHub!");
+            const destinationUrl = await gitHubService.createRepo(
+                model.gitHubUrl,
+                githubtoken as string,
+                model.name,
+                model.description,
+                model.private
+            );
+            await gitHubService.cloneAndPushRepo(githubtoken as string, model.sourceRepoUrl, destinationUrl);
+            res.status(200).json("Migration successful");
         } catch (error) {
-            res.status(500).json("Error while migrating to GitHub !");
+            console.error(error);
+            res.status(500).json("Error while migrating");
         }
     }
 }

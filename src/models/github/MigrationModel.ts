@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const migrationModel = z.object({
-    name: z.string(),
+    gitHubUrl: z.string().min(1),
+    name: z.string().min(1),
     description: z.string(),
-    privateRepo: z.boolean(),
-    sourceRepoUrl: z.string(),
-    destinationRepoUrl: z.string(),
+    private: z.boolean(),
+    sourceRepoUrl: z.string().min(1),
 });

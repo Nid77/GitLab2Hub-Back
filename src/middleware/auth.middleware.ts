@@ -6,15 +6,11 @@ export function authorizationMiddleware(req: Request, res: Response, next: NextF
     const authorization = req.headers["authorization"];
 
     if (!authorization) {
-        res.status(403).json({
-            error: ERROR_MESSAGE.MIDDLEWARE.TOKEN_MISSING,
-        });
+        res.status(403).json(ERROR_MESSAGE.MIDDLEWARE.MISSING_TOKEN);
         return;
     }
     if (authorization !== `Bearer ${secretToken}`) {
-        res.status(403).json({
-            error: ERROR_MESSAGE.MIDDLEWARE.INVALID_TOKEN,
-        });
+        res.status(403).json(ERROR_MESSAGE.MIDDLEWARE.INVALID_TOKEN);
         return;
     }
 

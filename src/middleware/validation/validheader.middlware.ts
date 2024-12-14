@@ -1,10 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 
 export function validMigrationHeaderMiddleware(req: Request, res: Response, next: NextFunction) {
-    const { GITLABTOKEN, GITHUBTOKEN } = req.headers;
+    const { gitlabtoken, githubtoken } = req.headers;
+    console.log("gitlabtoken", gitlabtoken);
+    console.log("githubtoken", githubtoken);
 
-    if (!GITLABTOKEN || !GITHUBTOKEN) {
-        res.status(401).json("INVALID HEADER");
+    if (!gitlabtoken || !githubtoken) {
+        res.status(401).json("Route UNAUTHORIZED");
         return;
     }
 
