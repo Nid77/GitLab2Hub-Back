@@ -6,7 +6,7 @@ export function validMigrationHeaderMiddleware(req: Request, res: Response, next
     console.log("githubtoken", githubtoken);
 
     if (!gitlabtoken || !githubtoken) {
-        res.status(401).json("Route UNAUTHORIZED");
+        res.status(401).json("Missing headers");
         return;
     }
 
