@@ -7,13 +7,13 @@ import { PATH } from "../../constants/constants";
 import { HubProject } from "@/models/github/GitHub";
 
 export class GitHubService {
-    async cloneAndPushRepo(token: string,sourceRepoUrl: string, destinationRepoUrl: string) {
+    async cloneAndPushRepo(token: string, sourceRepoUrl: string, destinationRepoUrl: string) {
         const projectName = path.basename(sourceRepoUrl, ".git");
-
         const tempDir = makeFolder(PATH.GLOBAL.TEMP_FOLDER);
 
         try {
-            await executeCommand(`git clone ${sourceRepoUrl}`, tempDir);
+            const absoluteTempDir = path.resolve(tempDir);
+            await executeCommand(`git clone ${sourceRepoUrl.replace("https://", `https://${token}@`)}`, absoluteTempDir);
 
             const projectPath = path.join(tempDir, projectName);
             await executeCommand(`git remote remove origin`, projectPath);

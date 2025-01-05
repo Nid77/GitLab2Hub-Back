@@ -3,7 +3,7 @@ import fs from "fs";
 export function makeFolder(tempDir: string): string {
     try {
         if (!fs.existsSync(tempDir)) {
-            var path = fs.mkdirSync(tempDir, { recursive: true });
+            var path = fs.mkdirSync(tempDir, { recursive: true, mode: 0o777 });
             if (path) {
                 console.log(`Temp directory created at: ${tempDir}`);
                 return path;
@@ -20,7 +20,7 @@ export function makeFolder(tempDir: string): string {
 export function removeFolder(tempDir: string): void {
     try {
         if (fs.existsSync(tempDir)) {
-            fs.rmdirSync(tempDir, { recursive: true });
+            fs.rmSync(tempDir, { recursive: true });
             console.log(`Temp directory removed at: ${tempDir}`);
         }
     } catch (error) {
