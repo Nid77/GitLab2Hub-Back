@@ -11,16 +11,15 @@ export class GitHubController {
         const globalService = new GlobalService();
 
         try {
-            // const destinationUrl = await gitHubService.createRepo(
-            //     model.gitHubUrl,
-            //     githubtoken as string,
-            //     model.name,
-            //     model.description,
-            //     model.private
-            // );
-            const url = "https://github.com/Nid77/Angular-Rayan-.git";
+            const destinationUrl = await gitHubService.createRepo(
+                model.gitHubUrl,
+                githubtoken as string,
+                model.name,
+                model.description,
+                model.private
+            );
 
-            await globalService.cloneAndPushRepo(model.sourceRepoUrl.replace("https://", `https://oauth2:${gitlabtoken}@`), url.replace("https://", `https://${githubtoken}@`));
+            await globalService.cloneAndPushRepo(model.sourceRepoUrl.replace("https://", `https://oauth2:${gitlabtoken}@`), destinationUrl.replace("https://", `https://${githubtoken}@`));
             res.status(200).json("Migration successful");
         } catch (error) {
             console.error(error);

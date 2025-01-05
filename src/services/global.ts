@@ -7,7 +7,6 @@ export class GlobalService {
     async cloneAndPushRepo(sourceRepoUrl: string, destinationRepoUrl: string) {
         const projectName = path.basename(sourceRepoUrl, ".git");
         const tempDir = makeFolder(PATH.GLOBAL.TEMP_FOLDER);
-        console.log("tempDir", tempDir);
 
         try {
             const absoluteTempDir = path.resolve(tempDir);
